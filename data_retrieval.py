@@ -56,30 +56,45 @@ def classify(seizureclass, timestamps):
             index += 1
     return seizureclass
 
-def seizurevector_retrieval(timestamps, initialseizure=0, endseizure=196):
+def seizurevector_retrieval(timestamps, initialseizure=0, endseizure=141, channel1=None, channel2=None):
     sf = 256
     s = sf * 100
     seizures = []
+    index = 0
+    indices = []
     for file in tqdm(list(timestamps.keys())[initialseizure:endseizure]):
         # iterates through each record with seizures (should be 142)
-        path = f'../chbmit/1.0.0/{file[:5]}/{file}'
-        data = mne.io.read_raw_edf(path, preload=True)
-        raw_data = data.get_data()
-        for seizure in timestamps[file]:
-            # iterates through each seizure within a record; total seizures should be 197
-            start = sf * int(seizure[0])
-            end = sf * int(seizure[1])
-            seizurevector = raw_data.take(indices=range(start-s, start+s), axis=1)
-            # USE FOR DEBUGGING IF NEEDED print(f'Length of Seizure Vector {((start + s) - (start - s)) / 256}')
-            bands = M_bands(seizurevector, 8)
-            bands = np.array(np.split(bands, 512, 2))
-            bands = np.swapaxes(bands, 0, 3)
-            bands = np.swapaxes(bands, 0, 2)
-            bands = np.swapaxes(bands, 0, 1)
-            pv = np.apply_along_axis(powervals, 3, bands)
-            pv = np.swapaxes(pv, 0, 2)
-            pv = np.swapaxes(pv, 0, 1)
-            pv = np.hstack((pv[0:23]))
-            seizures.append(pv)
-    seizures = np.array(seizures)
-    return seizures
+        try:
+            path = f'../chbmit/1.0.0/{file[:5]}/{file}'
+            # print(path)
+            data = mne.io.read_raw_edf(path, preload=True)
+            raw_data = data.get_data()
+            if channel1 != None and channel2 != None:
+                raw_data = raw_data[channel1:channel2]
+            for seizure in timestamps[file]:
+                # iterates through each seizure within a record; total seizures should be 197
+                start = sf * int(seizure[0])
+                seizurevector = raw_data.take(indices=range(start-s, start+s), axis=1)
+                #print(f'Length of Seizure Vector {((start + s) - (start - s)) / 256}')
+                bands = M_bands(seizurevector, 8)
+                bands = np.array(np.split(bands, 512, 2))
+                bands = np.swapaxes(bands, 0, 3)
+                bands = np.swapaxes(bands, 0, 2)
+                bands = np.swapaxes(bands, 0, 1)
+                pv = np.apply_along_axis(powervals, 3, bands)
+                pv = np.swapaxes(pv, 0, 2)
+                pv = np.swapaxes(pv, 0, 1)
+                pv = np.hstack((pv[channel1:channel2]))
+                seizures.append(pv)
+            index += 1
+        except Exception as e:
+            indices.append(index)
+            print(index)
+            index += 1
+            print(e)
+    try:
+        seizures = np.array(seizures)
+        return seizures, indices
+    except Exception as e:
+        print(e)
+        return seizures, indices
