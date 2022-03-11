@@ -8,7 +8,7 @@ This project seeks to determine whether a machine-learning algorithm can effecti
 
 ![graphs](https://user-images.githubusercontent.com/38896123/157976056-786e429f-b6b6-429b-94e0-864455d44b84.jpg)
 
-###### Steps
+#### Steps
 1. Collect the EEG data from three channels of the CHB-MIT database (channels from frontal, temporal, and parietal lobes)
 2. Filter raw EEG data through 8 bandpass filters
 3. Separate the EEG readings into 2-second epochs
@@ -26,11 +26,11 @@ This project seeks to determine whether a machine-learning algorithm can effecti
 
 Models were developed in three levels of increasing complexity.
 
-###### Model Architecture
+#### Model Architecture
 
 ![model architecture](https://user-images.githubusercontent.com/38896123/157976688-02b98ebb-cd0a-4525-8c80-de884ea3f111.jpg)
 
-###### Performance
+#### Performance
 
 ![performance](https://user-images.githubusercontent.com/38896123/157976423-7c6a7af9-76cd-4a5b-b42a-2a20f64b765c.jpg)
 
