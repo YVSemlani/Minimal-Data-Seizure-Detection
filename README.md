@@ -6,7 +6,7 @@ This project seeks to determine whether a machine-learning algorithm can effecti
 
 ### Data Processing
 
-![graphs](https://user-images.githubusercontent.com/38896123/157976056-786e429f-b6b6-429b-94e0-864455d44b84.jpg)
+<img src=https://user-images.githubusercontent.com/38896123/157976056-786e429f-b6b6-429b-94e0-864455d44b84.jpg width=400>
 
 #### Steps
 1. Collect the EEG data from three channels of the CHB-MIT database (channels from frontal, temporal, and parietal lobes)
