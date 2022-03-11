@@ -28,7 +28,7 @@ Models were developed in three levels of increasing complexity.
 
 #### Model Architecture
 
-<img src = https://user-images.githubusercontent.com/38896123/157976688-02b98ebb-cd0a-4525-8c80-de884ea3f111.jpg width=50>
+<img src = https://user-images.githubusercontent.com/38896123/157976688-02b98ebb-cd0a-4525-8c80-de884ea3f111.jpg width=150>
 
 #### Performance
 
