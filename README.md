@@ -9,15 +9,15 @@ This project seeks to determine whether a machine-learning algorithm can effecti
 <img src=https://user-images.githubusercontent.com/38896123/157976056-786e429f-b6b6-429b-94e0-864455d44b84.jpg width=400>
 
 #### Steps
+
+![variables](https://user-images.githubusercontent.com/38896123/157975895-2cb0edcb-c04b-45f7-9ad3-f3de26ae1cdd.jpg)
+
 1. Collect the EEG data from three channels of the CHB-MIT database (channels from frontal, temporal, and parietal lobes)
 2. Filter raw EEG data through 8 bandpass filters
 3. Separate the EEG readings into 2-second epochs
 4. Attain a power value for each of the epochs (3 channels of readings, 8 filters, 24 power values per timestep)
 5. Split full dataset into training and testing set. Training set is 80% of total compared to testing set which is 20% of the total.
 6.  Train each model over 100 epochs  on each subset of the data (3 subsets, 3 models, 9 total model variants)
-
-![variables](https://user-images.githubusercontent.com/38896123/157975895-2cb0edcb-c04b-45f7-9ad3-f3de26ae1cdd.jpg)
-
 7.  Evaluate each model using test data (Acquire Confusion Matrix)
 8. Convert confusion matrix into precision, recall, specificity, and sensitivity
 9. Convert specificity to false positives per hour
